@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+
+:root {
+  --color-bg: #fff6fa;
+  --color-primary: #ffb6c1;
+  --color-accent: #f76c91;
+  --color-text: #4a3c43;
+  --color-icon-hover: #f05378;
+  --color-tarjeta: #fff;
+  --color-shadow: #ffd6e0;
+  --font-family: 'Quicksand', sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  color: var(--color-text);
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 80px;
+  background: transparent; /* <-- Añade esto o elimina el color de fondo */
+}
+
+/* Centra el teléfono y baja un poco */
+.funda-conejo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 90px; /* Baja el teléfono */
+  min-height: 700px;
+  z-index: 0;
+}
+
+/* Orejas largas de conejo */
+.oreja-larga {
+  position: absolute;
+  width: 44px;
+  height: 160px;
+  background: var(--color-primary);
+  border-radius: 50% 50% 60% 60% / 90% 90% 40% 40%;
+  top: -150px;
+  z-index: 10;
+  box-shadow: 0 4px 16px #d8c9c9;
+  pointer-events: none;
+}
+.oreja-izq {
+  left: 50%;
+  transform: translateX(-120px) rotate(-15deg);
+}
+.oreja-der {
+  left: 50%;
+  transform: translateX(76px) rotate(15deg);
+}
+
+/* Cuerpo del móvil/funda */
+.movil-cuerpo {
+  position: relative;
+  width: 370px;
+  height: 720px;
+  background: var(--color-primary);
+  border-radius: 40px;
+  box-shadow: 0 8px 32px 0 var(--color-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 3;
+  border: 8px solid var(--color-primary);
+}
+
+/* Cámara frontal */
+.camara-frontal {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  background: #222;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  z-index: 10;
+  box-shadow: 0 2px 8px #ffd6e0;
+}
+
+/* Pantalla del móvil */
+.pantalla {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 320px;
+  height: 640px;
+  background: var(--color-tarjeta);
+  border-radius: 28px;
+  box-shadow: 0 4px 16px #ffd6e0;
+  z-index: 5;
+  padding: 2rem 1.2rem 1.2rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  border: 2px solid #f3e0e7;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+  color: var(--color-accent);
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 12px #ffd6e0;
+  user-select: none;
+}
+
+.corazon {
+  margin-top: 6px;
+  font-size: 2.5rem;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+  animation: latido 1.2s infinite;
+}
+
+@keyframes latido {
+  0%, 100% { transform: scale(1);}
+  20% { transform: scale(1.18);}
+  40% { transform: scale(0.95);}
+  60% { transform: scale(1.1);}
+  80% { transform: scale(0.98);}
+}
+
+.mensaje {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  color: #a06b7b;
+  line-height: 1.5;
+}
+
+.menu-minimal {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.menu-minimal a {
+  background: #fff6fa;
+  border-radius: 12px;
+  padding: 0.7rem 0.5rem;
+  flex: 1 1 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px #ffe3ee44;
+  margin: 0 0.2rem;
+}
+
+.menu-minimal a i {
+  font-size: 1.7rem;
+  margin-bottom: 0.2rem;
+  color: var(--color-primary);
+  transition: color 0.2s, transform 0.2s;
+}
+
+.menu-minimal a:hover,
+.menu-minimal a:focus {
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: 0 4px 16px #f76c9188;
+}
+
+.menu-minimal a:hover i,
+.menu-minimal a:focus i {
+  color: #fff;
+  transform: scale(1.18);
+}
+
+.menu-minimal a span {
+  font-size: 0.95rem;
+  margin-top: 0.1rem;
+}
+
+.imagen-cariñosa {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.imagen-cariñosa img {
+  width: 90%;
+  max-width: 220px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px #ffd6e0;
+  border: 3px solid #fff6fa;
+}
+
+/* Fondo de video pantalla completa */
+#video-fondo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -10;
+}
+

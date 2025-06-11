@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+
+/* ======= VARIABLES Y BASE ======= */
+body {
+  margin: 0;
+  background: #fff6fa;
+  font-family: 'Quicksand', sans-serif;
+  color: #4a3c43;
+}
+
+/* ======= HEADER ======= */
+.periodico-header {
+  position: relative;
+  text-align: center;
+  padding: 2rem 1rem 1rem 1rem;
+  background: #ffe3ee;
+  border-bottom: 2px dashed #ffb6c1;
+  animation: appers 1s cubic-bezier(.4,2,.6,1) both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+.periodico-header i {
+  color: #f76c91;
+  font-size: 4.5rem;
+  margin-bottom: 0.5rem;
+  animation: latido 1.2s infinite;
+}
+@keyframes latido {
+  0%, 100% { transform: scale(1);}
+  20% { transform: scale(1.18);
+  color: #d6093f;}
+  40% { transform: scale(0.95);}
+  60% { transform: scale(1.1);
+  color: #b9123f;}
+  80% { transform: scale(0.98);}
+}
+.periodico-header h1 {
+  margin: 0.5rem 0 0.2rem 0;
+  font-size: 2rem;
+  color: #f76c91;
+  letter-spacing: 0.04em;
+}
+.periodico-header .subtitulo {
+  color: #a06b7b;
+  font-size: 1.1rem;
+  margin-bottom: 0;
+}
+
+/* ======= BOTÓN VOLVER ======= */
+.back-btn {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  margin: 0;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  background: none;
+  color: #f76c91;
+  font-weight: 600;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: 30px;
+  padding: 0.4em 1em 0.4em 0.7em;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+  cursor: pointer;
+}
+.back-btn:hover,
+.back-btn:focus {
+  background: #ffe3ee;
+  color: #a06b7b;
+  outline: none;
+}
+.back-icon {
+  font-size: 1.2em;
+  line-height: 1;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* ======= TIMELINE ======= */
+.timeline {
+  max-width: 600px;
+  margin: 2rem auto 2.5rem auto;
+  padding: 0 1rem;
+  position: relative;
+  animation: appers 1s cubic-bezier(.4,2,.6,1) both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+.timeline-event {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 2.2rem;
+  animation: appers 1s cubic-bezier(.4,2,.6,1) both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+.timeline-dot {
+  width: 18px;
+  height: 18px;
+  background: #f76c91;
+  border-radius: 50%;
+  border: 3px solid #ffe3ee;
+  margin-right: 1.2rem;
+  margin-top: 0.3rem;
+  box-shadow: 0 2px 8px #ffd6e0;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.timeline-event:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 24px;
+  width: 3px;
+  height: calc(100% - 24px);
+  background: #ffe3ee;
+  z-index: 0;
+  border-radius: 2px;
+}
+.timeline-content {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #ffd6e0;
+  padding: 1rem 1.2rem;
+  min-width: 0;
+  flex: 1;
+}
+.timeline-content h3 {
+  margin: 0 0 0.2rem 0;
+  color: #f76c91;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.timeline-date {
+  display: block;
+  color: #a06b7b;
+  font-size: 0.97rem;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+.timeline-content p {
+  margin: 0;
+  color: #a06b7b;
+  font-size: 1rem;
+}
+
+/* ======= MAIN Y ARTÍCULOS ======= */
+.periodico {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+.articulo {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #ffd6e0aa;
+  padding: 1.5rem 1rem;
+  position: relative;
+  animation: appers linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 30%;
+}
+.articulo:nth-child(even) {
+  flex-direction: row-reverse;
+  background: #fff6fa;
+}
+
+/* ======= FOTOS ======= */
+.foto {
+  flex: 0 0 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.foto-izq img { transform: rotate(-6deg); }
+.foto-der img { transform: rotate(5deg); }
+.foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px #ffd6e0;
+  border: 3px solid #fff6fa;
+  background: #fff;
+  animation: appers linear;
+  animation-timeline: view();
+  animation-range: entry 0% cover 30%;
+}
+
+/* ======= TEXTO DE ARTÍCULOS ======= */
+.texto { flex: 1; }
+.texto h2 {
+  margin: 0 0 0.5rem 0;
+  color: #f76c91;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.texto p {
+  margin: 0;
+  color: #a06b7b;
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+/* ======= ANIMACIÓN DE APARICIÓN ======= */
+@keyframes appers {
+  from {
+    opacity: 0;
+    sacale: 0.5;
+  }
+  to {
+    opacity: 1;
+    sacale: 1;
+  
+  }
+}
+@keyframes appers-left {
+  from {
+    opacity: 0;
+    scale: 0.5;
+    translate: -60px 0;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+  }
+}
+@keyframes appers-right {
+  from {
+    opacity: 0;
+    scale: 0.5;
+    translate: 60px 0;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+  }
+}
+
+/* Aplica la animación según el lado */
+.foto-izq img {
+  animation: appers-left 0.9s cubic-bezier(.4,2,.6,1) both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+.foto-der img {
+  animation: appers-right 0.9s cubic-bezier(.4,2,.6,1) both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 40%;
+}
+
+/* ======= RESPONSIVE ======= */
+@media (max-width: 600px) {
+  .articulo {
+    flex-direction: column-reverse;
+    gap: 1rem;
+    padding: 1rem 0.5rem;
+  }
+  .foto img {
+    width: 120px;
+    height: 180px;
+  }
+  .periodico {
+    gap: 1.2rem;
+  }
+  .timeline {
+    margin: 1.2rem 0 2rem 0;
+    padding: 0 0.2rem;
+  }
+  .timeline-content {
+    padding: 0.8rem 0.7rem;
+    font-size: 0.97rem;
+  }
+  .timeline-dot {
+    width: 14px;
+    height: 14px;
+    margin-right: 0.7rem;
+  }
+}
