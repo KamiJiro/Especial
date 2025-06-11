@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Un día especial</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="./estilos/styles.css" />
+</head>
+<body>
+  <video autoplay loop muted playsinline id="video-fondo" style="position:fixed;top:0;left:0;width:100vw;height:100vh;object-fit:cover;z-index:-1;">
+    <source src="./estilos/Img/beach.mp4" type="video/mp4">
+    Tu navegador no soporta videos HTML5.
+  </video>
+  <div class="funda-conejo">
+    <!-- Orejas de conejo fuera del móvil -->
+    <div class="oreja-larga oreja-izq"></div>
+    <div class="oreja-larga oreja-der"></div>
+    <!-- Móvil/funda -->
+    <div class="movil-cuerpo">
+      <div class="camara-frontal"></div>
+      <main class="pantalla">
+        <div class="corazon">
+          <i class="fa-solid fa-heart"></i>
+        </div>
+        <h1>Un día especial</h1>
+        <p class="mensaje">
+          Gracias por compartir momentos tan bonitos juntos y por estar tanto en lo bueno como en lo malo. <br>
+          Esto es para ti, hecho con mucho amor.
+        </p>
+        <nav class="menu-minimal">
+          <a href="./momentos.html" aria-label="Momentos">
+            <i class="fa-regular fa-heart"></i>
+            <span>Momentos</span>
+          </a>
+          <a href="./pulsame.html" aria-label="Frases bonitas">
+            <i class="fa-solid fa-star"></i>
+            <span>Pulsame</span>
+          </a>
+          <a href="./musica.html" aria-label="Canciones favoritas">
+            <i class="fa-solid fa-music"></i>
+            <span>Mini Spotify</span>
+          </a>
+        </nav>
+        <div class="imagen-cariñosa">
+          <img src="./estilos/Img/juntos.gif" alt="Juntos" />
+        </div>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
+

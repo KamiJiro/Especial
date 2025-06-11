@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mini Spotify Romántico - Tema Oscuro Dinámico</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:ital,wght@1,400;1,700&display=swap');
+  :root {
+    --background-dark: #121212;
+    --card-bg: #1e1e1e;
+    --primary-pink: #e75480;
+    --secondary-pink: #b94f6e;
+    --text-light: #e0c3c9;
+    --text-muted: #a67a87;
+    --shadow-color: rgba(231, 84, 128, 0.5);
+    --shadow-dark: rgba(0,0,0,0.7);
+  }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--background-dark);
+    color: var(--text-light);
+    margin: 0;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+  .container {
+    max-width: 1080px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 2rem;
+  }
+  .card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 6px 20px var(--shadow-dark);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card:hover,
+  .card:focus-within {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 32px var(--shadow-color);
+    outline: none;
+  }
+  .img-wrapper {
+    position: relative;
+    padding-top: 100%;
+    overflow: hidden;
+  }
+  .img-wrapper img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.93);
+    transition: filter 0.3s ease;
+  }
+  .card:hover .img-wrapper img,
+  .card:focus-within .img-wrapper img {
+    filter: brightness(1);
+  }
+  .content {
+    padding: 1rem 1.2rem 1.8rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .song-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-pink);
+  }
+  .btn-listen {
+    text-align: center;
+    display: inline-block;
+    background: var(--primary-pink);
+    color: var(--text-light);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.5rem 1.4rem;
+    border-radius: 50px;
+    box-shadow: 0 6px 14px rgba(231, 84, 128, 0.7);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    user-select: none;
+  }
+  .btn-listen:hover,
+  .btn-listen:focus {
+    background: var(--secondary-pink);
+    outline: none;
+    box-shadow: 0 8px 20px rgba(185, 79, 110, 0.85);
+  }
+  .chorus {
+    margin-top: 1rem;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.3;
+    font-family: 'Playfair Display', serif;
+  }
+  @media (max-width: 400px) {
+    body {
+      padding: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container" role="main" aria-label="Lista de canciones románticas en modo oscuro" id="songs-container">
+    <!-- Dynamic song cards inserted here -->
+  </div>
+
+  <script>
+    const songs = [
+      {
+        title: "Can't Help Falling In Love",
+        image: "https://i.scdn.co/image/ab67616d0000b2734fa2d435511f82d80e781da8",
+        alt: "Portada de 'Can't Help Falling In Love' de Elvis Presley",
+        link: "https://open.spotify.com/track/6T1l6xtVXRlUL2XM6m0xrt",
+        chorus: '"Take my hand, take my whole life too... For I can\'t help falling in love with you"'
+      },
+      {
+        title: "All of Me",
+        image: "https://i.scdn.co/image/ab67616d0000b273d7bba79e97f0926c813a4021",
+        alt: "Portada de 'All of Me' de John Legend",
+        link: "https://open.spotify.com/track/3U4isOIWM3VvDubwSI3y7a",
+        chorus: '"Cause all of me loves all of you, love your curves and all your edges"'
+      },
+      {
+        title: "Perfect",
+        image: "https://i.scdn.co/image/ab67616d0000b2730363aab1a653069f8df4a1f0",
+        alt: "Portada de 'Perfect' de Ed Sheeran",
+        link: "https://open.spotify.com/track/0tgVpDi06FyKpA1z0VMD4v",
+        chorus: '"I found a love for me, darling just dive right in and follow my lead"'
+      },
+      {
+        title: "Adore You",
+        image: "https://i.scdn.co/image/ab67616d0000b27368d4de1089ed47f50203f2e2",
+        alt: "Portada de 'Adore You' de Harry Styles",
+        link: "https://open.spotify.com/track/6rPO02ozF3bM7NnOV4h6s2",
+        chorus: '"Just let me adore you, like it\'s the only thing I\'ll ever do"'
+      },
+      {
+        title: "Love On The Brain",
+        image: "https://i.scdn.co/image/ab67616d0000b273d2269345b4a18f3bdcee794d",
+        alt: "Portada de 'Love On The Brain' de Rihanna",
+        link: "https://open.spotify.com/track/3MOQZQgCU8RrFSqAAaTDA5",
+        chorus: '"Must be love on the brain, that\'s got me feeling this way"'
+      },
+      {
+        title: "Die For You",
+        image: "https://i.scdn.co/image/ab67616d0000b273e6f3ed243ec84633582b833f",
+        alt: "Portada de 'Die For You' de The Weeknd",
+        link: "https://open.spotify.com/track/4cBYLcCByT5MYp8w0iEnET",
+        chorus: '"Even though we\'re going through it, if it makes you feel alone"'
+      },
+      {
+        title: "Lover",
+        image: "https://i.scdn.co/image/ab67616d0000b273e1f109ccecc6b2ee26cc243f",
+        alt: "Portada de 'Lover' de Taylor Swift",
+        link: "https://open.spotify.com/track/1rqqCSm0Qe4I9rUvWncaom",
+        chorus: '"Can I go where you go? Can we always be this close forever and ever?"'
+      },
+      {
+        title: "Yellow",
+        image: "https://i.scdn.co/image/ab67616d0000b273f8dc7079a3d795361068c00e",
+        alt: "Portada de 'Yellow' de Coldplay",
+        link: "https://open.spotify.com/track/3AJwUDP919kvQ9QcozQPxg",
+        chorus: '"Look at the stars, look how they shine for you and everything you do"'
+      },
+      {
+        title: "Just The Way You Are",
+        image: "https://i.scdn.co/image/ab67616d0000b27333726984048caaebc6aba62c",
+        alt: "Portada de 'Just The Way You Are' de Bruno Mars",
+        link: "https://open.spotify.com/track/0zi6FJ9OYVvUdrjxC4YfPp",
+        chorus: '"When I see your face, there\'s not a thing that I would change"'
+      },
+      {
+        title: "Make You Feel My Love",
+        image: "https://i.scdn.co/image/ab67616d0000b2730c3e56af9d39ba9309270025",
+        alt: "Portada de 'Make You Feel My Love' de Adele",
+        link: "https://open.spotify.com/track/3ZFTkvIE7kyPt6Nu3PEa7V",
+        chorus: '"I could hold you for a million years to make you feel my love"'
+      },
+      {
+        title: "Say You Won't Let Go",
+        image: "https://i.scdn.co/image/ab67616d0000b273f6f054a6d2295e85e528773d",
+        alt: "Portada de 'Say You Won't Let Go' de James Arthur",
+        link: "https://open.spotify.com/track/7qEHsqek33rTcFNT9PFqLf",
+        chorus: '"I wanna live with you, even when we\'re ghosts"'
+      }
+    ];
+
+    const container = document.getElementById('songs-container');
+
+    function createCard(song) {
+      const article = document.createElement('article');
+      article.className = 'card';
+      article.tabIndex = 0;
+
+      const imgWrapper = document.createElement('div');
+      imgWrapper.className = 'img-wrapper';
+
+      const img = document.createElement('img');
+      img.src = song.image;
+      img.alt = song.alt;
+      imgWrapper.appendChild(img);
+
+      const content = document.createElement('div');
+      content.className = 'content';
+
+      const title = document.createElement('h2');
+      title.className = 'song-title';
+      title.textContent = song.title;
+
+      const link = document.createElement('a');
+      link.className = 'btn-listen';
+      link.href = song.link;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.setAttribute('aria-label', `Escuchar ${song.title} en Spotify`);
+      link.textContent = 'Escuchar';
+
+      const chorus = document.createElement('p');
+      chorus.className = 'chorus';
+      chorus.textContent = song.chorus;
+
+      content.appendChild(title);
+      content.appendChild(link);
+      content.appendChild(chorus);
+
+      article.appendChild(imgWrapper);
+      article.appendChild(content);
+
+      return article;
+    }
+
+    songs.forEach(song => {
+      const card = createCard(song);
+      container.appendChild(card);
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mini Spotify</title>
+<link rel="stylesheet" href="./estilos/musica.css">
+</head>
+<body>
+    <video autoplay loop muted playsinline id="video-fondo" style="position:fixed;top:0;left:0;width:100vw;height:100vh;object-fit:cover;z-index:-1;">
+    <source src="./estilos/Img/aesthetic-beauty-of-cityscape.3840x2160.mp4" type="video/mp4">
+    Tu navegador no soporta videos HTML5.
+  </video>
+<main class="main-flex">
+    <section class="left-panel">
+        <a href="index.html" class="back-btn" aria-label="Volver al menú principal">
+          <span class="back-icon">&#8592;</span> Menú
+        </a>
+        <h1 class="main-title">Mini Spotify</h1>
+        <div class="search-section">
+            <h2>Filtros de Búsqueda</h2>
+            <div class="filter-row">
+                <input type="text" id="name-input" placeholder="Nombre de la canción" class="live-search">
+            </div>
+            <div class="filter-row">
+                <select id="genre-select">
+                    <option value="">Todos los géneros</option>
+                    <option value="Pop">Pop</option>
+                    <option value="Rock español">Rock español</option>
+                    <option value="Argentinian Trap">Argentinian Trap</option>
+                    <option value="Tropipop">Tropipop</option>
+                    <option value="Música urbana">Música urbana</option>
+                 
+                </select>
+            </div>
+        </div>
+    </section>
+    <section class="right-panel">
+        <div class="container" role="main" aria-label="Lista de canciones" id="songs-container">
+            
+        </div>
+    </section>
+</main>
+  
+
+  <script src="canciones.js"></script>
+</body>
+</html>
+

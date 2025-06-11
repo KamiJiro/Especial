@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Púlsame</title>
+    <style>
+        /* ======== ESTILOS GENERALES ======== */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+             background: linear-gradient(rgb(214, 167, 226), 70%, rgb(195, 93, 226));
+            font-family: Arial, sans-serif;
+            
+        }
+
+        /* ======== BOTÓN VOLVER ======== */
+        .btn-volver {
+            position: fixed;
+            top: 18px;
+            left: 18px;
+            background: #fff;
+            color: #e2557b;
+            border-radius: 20px;
+            padding: 7px 16px;
+            font-size: 1em;
+            text-decoration: none;
+            box-shadow: 0 2px 8px rgba(226,85,123,0.10);
+            border: 1px solid #e2557b22;
+            z-index: 10;
+            transition: background 0.2s, color 0.2s;
+        }
+        .btn-volver:hover {
+            background: #ffe6ec;
+            color: #b13d5f;
+        }
+
+        /* ======== CORAZÓN Y ANIMACIÓN ======== */
+        .heart-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            outline: none;
+            position: relative;
+        }
+        .heart {
+            width: 160px;
+            height: 140px;
+            position: relative;
+            display: inline-block;
+            transition: transform 0.1s;
+            z-index: 1;
+        }
+        .heart.heartbeat {
+            animation: heartbeat 0.4s;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1);}
+            20% { transform: scale(1.2);}
+            40% { transform: scale(0.95);}
+            60% { transform: scale(1.1);}
+            80% { transform: scale(0.98);}
+            100% { transform: scale(1);}
+        }
+        .heart:before,
+        .heart:after {
+            content: "";
+            position: absolute;
+            left: 80px;
+            top: 0;
+            width: 80px;
+            height: 120px;
+            background: #e2557b;
+            border-radius: 80px 80px 0 0;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+        .heart:after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        /* ======== OJOS Y BOCA EN EL CORAZÓN ======== */
+        .ojo {
+            position: absolute;
+            top: 38px;
+            width: 22px;
+            height: 22px;
+            background: #fff;
+            border-radius: 50%;
+            border: 2px solid #e2557b;
+            z-index: 2;
+            box-shadow: 0 1px 2px #e2557b22;
+            overflow: hidden;
+        }
+        .ojo-izq { left: 44px; }
+        .ojo-der { right: 44px; }
+        .ojo::after {
+            content: "";
+            display: block;
+            width: 10px;
+            height: 10px;
+            background: #222;
+            border-radius: 50%;
+            position: absolute;
+            top: 6px;
+            left: 6px;
+        }
+        .boca {
+            position: absolute;
+            bottom: 55px;
+            left: 45%;
+            transform: translateX(-50%) rotate(180deg);
+            font-size: 2.7em;
+            color: #963351;
+            line-height: 1;
+            pointer-events: none;
+            user-select: none;
+            z-index: 10;
+            rotate: -90deg;
+        }
+        .boca::before {
+            content: "3";
+        }
+
+        /* ======== BURBUJA DE FRASE ======== */
+        .bubble {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            min-width: 180px;
+            max-width: 250px;
+            padding: 15px 20px;
+            background: #fff;
+            color: #e2557b;
+            border-radius: 25px;
+            box-shadow: 10px 5px 20px rgb(201, 143, 143);
+            font-size: 1.1em;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 2;
+            transition: opacity 0.3s, transform 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .bubble.visible {
+            opacity: 1;
+            animation: bubbleIn 0.4s;
+        }
+        .bubble.hide {
+            opacity: 0;
+            animation: bubbleOut 0.4s forwards;
+        }
+        @keyframes bubbleIn {
+            0% { opacity: 0; transform: translateX(-50%) scale(0.7);}
+            80% { opacity: 1; transform: translateX(-50%) scale(1.1);}
+            100% { opacity: 1; transform: translateX(-50%) scale(1);}
+        }
+        @keyframes bubbleOut {
+            0% { opacity: 1; transform: translateX(-50%) scale(1);}
+            100% { opacity: 0; transform: translateX(-50%) scale(0.7);}
+        }
+        .bubble::after {
+            content: "";
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 12px 14px 0 14px;
+            border-style: solid;
+            border-color: #fff transparent transparent transparent;
+            filter: drop-shadow(0 2px 2px rgba(226,85,123,0.10));
+        }
+
+        /* ======== RESPONSIVE ======== */
+        @media (max-width: 400px) {
+            .contenido {
+                width: 100vw;
+                height: 60vh;
+                min-height: 320px;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            .btn-volver {
+                font-size: 1.25em;
+                padding: 6px 10px;
+                top: 16px;
+                left: 8px;
+            }
+            .heart-btn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+            }
+            .heart {
+              
+                margin: 0 auto;
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Botón volver al menú -->
+    <a href="./index.html" class="btn-volver" aria-label="Volver al menú">
+        <span>&larr;</span> Menú
+    </a>
+    <div class="contenido" style="position: relative; display: flex; flex-direction: column; align-items: center;">
+        <button class="heart-btn" id="heartBtn">
+            <span class="heart" id="heart">
+                <span class="ojo ojo-izq"></span>
+                <span class="ojo ojo-der"></span>
+                <span class="boca"></span>
+            </span>
+        </button>
+        <div class="bubble" id="frase"></div>
+    </div>
+    <script>
+        const frases = [
+            "Eres toda mi felicidad",
+            "Tu sonrisa me ilumina cada día",
+            "Sueño contigo cada noche",
+            "Eres mágica",
+            "Cómete el mundo ^^",
+            "Gracias por estar ahí conmigo",
+            "Eres la razón de mi sonrisa",
+            "Tu sonrisa es contagiosa",
+            "¡Nunca dejes de ser tú!",
+            "Eres el mejor regalo que la vida me ha dado",
+            "Contigo, todo es mejor",
+            "Eres mi razón de ser",
+            "Tu amor es mi mayor tesoro",
+            "Eres mi luna y mis estrellas ❤️",
+            "Cada día a tu lado es un regalo"
+        ];
+
+        let timeoutBubble = null;
+
+        function mostrarFrase() {
+            const heart = document.getElementById('heart');
+            const bubble = document.getElementById('frase');
+            // Reinicia animación
+            heart.classList.remove('heartbeat');
+            void heart.offsetWidth;
+            heart.classList.add('heartbeat');
+            // Muestra frase aleatoria
+            bubble.textContent = frases[Math.floor(Math.random() * frases.length)];
+            bubble.classList.remove('hide');
+            bubble.classList.add('visible');
+            // Oculta después de 2s
+            if (timeoutBubble) clearTimeout(timeoutBubble);
+            timeoutBubble = setTimeout(() => {
+                bubble.classList.remove('visible');
+                bubble.classList.add('hide');
+            }, 2000);
+        }
+
+        // Mejor usar addEventListener que atributo onclick
+        document.getElementById('heartBtn').addEventListener('click', mostrarFrase);
+    </script>
+</body>
+</html>
